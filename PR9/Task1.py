@@ -1,20 +1,18 @@
 class Figure:
-    def perimetr(self):
-        return self.a + self.b
+  def perimetr():
+    pass
+
+def validate(func):
+  def wrapper(*args, **kwargs):
+    for arg in args:
+      if arg < 0:
+        raise ValueError("Значение не может быть отрицательным")
+    return func(*args, **kwargs)
+  return wrapper
 
 class Rectangle(Figure):
-    def __init__(self, a, b):
-        self.a = self.check_value(a)
-        self.b = self.check_value(b)
-    
-    @staticmethod
-    def check_value(v):
-        if v < 0:
-            raise ValueError("Отрицательное значение")
-        return v
-    
-    def perimetr(self):
-        return 2 * (self.a + self.b)
+  @validate
+  def perimetr(width, height):
+    return 2 * (width + height)
 
-r = Rectangle(1, 2)
-print(r.perimetr())
+print(Rectangle.perimetr(-1, 2))
